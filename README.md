@@ -1,2 +1,2 @@
-# GPS_backend
-gps gastronomy hackathon 2025
+# Kunalaya Backend
+Kunalaya app hackathon 2025
