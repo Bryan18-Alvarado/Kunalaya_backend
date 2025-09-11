@@ -1,2 +1,2 @@
-# GPS_backend
-gps gastronomy hackathon 2025
+# Kunalaya
+App para la preservacion de nuestras historias y tradiciones
