@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
-
 #Base models for the other models
 class BaseModel(models.Model):
   created_at = models.DateTimeField(auto_now_add=True)
@@ -20,4 +18,8 @@ class CustomUser(AbstractUser):
 
 #coords for histories, cultural events and more
 class Localizations(models.Model):
+  name = models.CharField(max_length=100)
   coords = models.CharField(max_length=300)
+
+  def __str__(self):
+    return self.name
