@@ -1,5 +1,6 @@
 env/
 __pycache__/
+migrations/
 
 db_settings.py
 
