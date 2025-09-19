@@ -5,7 +5,7 @@ from core.models import CustomUser, Localizations
 # Create your models here.
 
 class Story(models.Model):
-  tittle = models.CharField(max_length=200)
+  title = models.CharField(max_length=200)
   content = models.TextField()
   author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="stories")
   publication_date = models.DateTimeField(auto_now_add=True)
@@ -13,7 +13,7 @@ class Story(models.Model):
   localization = models.ForeignKey(Localizations, on_delete=models.CASCADE)
 
   def __str__(self):
-    return self.tittle
+    return self.title
   
 class MultimediaStoryFiles(models.Model):
   type_file = [
