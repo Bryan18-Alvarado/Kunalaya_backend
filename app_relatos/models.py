@@ -1,15 +1,15 @@
 from django.db import models
-from core.models import CustomUser, Localizations
+from core.models import BaseModel, CustomUser, Localizations, Category
 
 
 # Create your models here.
 
-class Story(models.Model):
+class Story(BaseModel):
+  category = models.ForeignKey(Category, on_delete=models.CASCADE)
   title = models.CharField(max_length=200)
   content = models.TextField()
   author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="stories")
   publication_date = models.DateTimeField(auto_now_add=True)
-  
   localization = models.ForeignKey(Localizations, on_delete=models.CASCADE)
 
   def __str__(self):

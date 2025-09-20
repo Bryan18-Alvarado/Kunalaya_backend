@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from app_relatos.models import Story, MultimediaStoryFiles
-from .models import CustomUser, Localizations
+from .models import CustomUser, Localizations, Category, Comment
 
 # Register your models here.
 
@@ -21,4 +21,6 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Story)
 admin.site.register(MultimediaStoryFiles)
+admin.site.register(Comment)
+admin.site.register(Category)
 admin.site.register(Localizations)

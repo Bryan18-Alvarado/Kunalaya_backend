@@ -114,7 +114,7 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] # + ipv4 de la maquina
 
 CORS_ALLOW_ORIGINS = [
     'https://localhost:8081',
