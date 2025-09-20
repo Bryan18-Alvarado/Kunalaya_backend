@@ -1,9 +1,9 @@
 from rest_framework import serializers
 from .models import Story
-from core.serializer import UserSerializer, LocalizationSerializer, Category
+from core.serializer import UserSerializer, LocalizationSerializer, CategorySerializer
 
 class StorySerializer(serializers.ModelSerializer):
-  category = Category()
+  category = CategorySerializer()
   author = UserSerializer()
   localization = LocalizationSerializer()
   
