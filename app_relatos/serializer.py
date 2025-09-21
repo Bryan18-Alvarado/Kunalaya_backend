@@ -1,25 +1,37 @@
 from django.db.models import Avg
 from rest_framework import serializers
 from core.models import Rating, Comment
-from .models import Story
+from .models import Story, MultimediaStoryFiles
 from core.serializer import UserSerializer, LocalizationSerializer, CategorySerializer, CommentSerializer
+
+class MultimediaSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = MultimediaStoryFiles
+    fields = '__all__'
 
 class StorySerializer(serializers.ModelSerializer):
   category = CategorySerializer()
   author = UserSerializer()
   localization = LocalizationSerializer()
   
+  media = serializers.SerializerMethodField()
   comment = serializers.SerializerMethodField()
   rating = serializers.SerializerMethodField()
   
   class Meta:
     model = Story
-    fields = ['id', 'category', 'title', 'content', 'author', 'publication_date', 'localization', 'comment', 'rating', 'created_at', 'updated_at']
+    fields = ['id', 'category', 'title', 'content', 'author', 'media', 'publication_date', 'localization', 'comment', 'rating', 'created_at', 'updated_at']
+  
+  def get_media(self, obj):
+    qs = MultimediaStoryFiles.objects.filter(
+      story = obj.id
+    )
+    return MultimediaSerializer(qs, many = True).data
   
   #Add the comment already filtered
   def get_comment(self, obj):
     qs = Comment.objects.filter(
-        category__slug=obj.category.slug, post_id=obj.id
+      category__slug=obj.category.slug, post_id=obj.id
     )
     return CommentSerializer(qs, many=True).data
   
