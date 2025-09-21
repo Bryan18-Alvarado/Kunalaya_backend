@@ -15,10 +15,10 @@ class CategorySerializer(serializers.ModelSerializer):
   class Meta:
     model = Category
     fields = '__all__'
-
+    
 class CommentSerializer(serializers.ModelSerializer):
   user = UserSerializer()
-  
+
   class Meta:
     model = Comment
-    fields = ['id', 'user', 'category', 'post_id', 'content']
+    fields = ['id', 'user', 'content', 'created_at']
