@@ -1,5 +1,5 @@
 from django.db import models
-from core.models import BaseModel, CustomUser, Localizations, Category, Comment, Rating
+from core.models import BaseModel, CustomUser, Localizations, Category, Comment
 
 
 # Create your models here.
@@ -11,8 +11,6 @@ class Story(BaseModel):
   author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="stories")
   publication_date = models.DateTimeField(auto_now_add=True)
   localization = models.ForeignKey(Localizations, on_delete=models.CASCADE)
-  
-  comment = models.ForeignKey(Comment, on_delete=models.CASCADE)
   
   def __str__(self):
     return self.title
