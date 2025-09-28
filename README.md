@@ -83,4 +83,16 @@ Ya realizada las migraciones se esta listo para correr el servidor con el comand
 $ python manage.py runserver 0.0.0.0:8000
 ```
 
+Se puede realizar un usuario administrador para acceder al panel de administrador para ver y probar los modelos registrados actualmente, para crear un super usuario se usa el siguiente comando:
+
+## Panel de administracion
+
+```bash
+$ python manage.py createsuperuser
+```
+
+Con eso le pedira nombre de usuario, correo y contraseña con la cual puede acceder desde la url ``` 0.0.0.0:8000/admin ```
+
+## Frontend
+
 Habiendo hecho todo esto se esta listo el montaje del backend y pasar al [frontend](https://github.com/Bryan18-Alvarado/Kunalaya_frontend)
