@@ -1,2 +1,2 @@
-# Kunalaya Backend
-Kunalaya app hackathon 2025
+# Kunalaya
+App para la preservacion de nuestras historias y tradiciones
