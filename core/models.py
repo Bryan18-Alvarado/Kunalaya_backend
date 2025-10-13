@@ -11,8 +11,7 @@ class BaseModel(models.Model):
 
 #Custom user registration and update for all posts
 class CustomUser(AbstractUser):
-  pass
-
+  
   def __str__(self):
     return self.username
 
@@ -48,9 +47,13 @@ class Rating(BaseModel):
     return f"{self.user} cualify {self.category} (post {self.post_id} with {self.score})"
   
 
+# class views(models.Model):
+  
+
 #coords for histories, cultural events and more
 class Localizations(models.Model):
   name = models.CharField(max_length=100)
+  description = models.TextField()
   coords = models.CharField(max_length=300)
 
   def __str__(self):

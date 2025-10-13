@@ -2,9 +2,13 @@ from rest_framework import serializers
 from .models import CustomUser, Localizations, Category, Comment
 
 class UserSerializer(serializers.ModelSerializer):
+  username = serializers.CharField(required = True)
+  email = serializers.CharField(required = True)
+  password = serializers.CharField(required = True)
+  
   class Meta:
     model = CustomUser
-    fields = ['id', 'username', 'first_name', 'last_name', 'email']
+    fields = ['id', 'username', 'first_name', 'last_name', 'email', 'password']
     
 class LocalizationSerializer(serializers.ModelSerializer):
   class Meta:
@@ -22,3 +26,4 @@ class CommentSerializer(serializers.ModelSerializer):
   class Meta:
     model = Comment
     fields = ['id', 'user', 'content', 'created_at']
+    
