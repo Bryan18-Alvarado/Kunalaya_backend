@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Subir Relato</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 2rem;
+    }
+    form {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    input, textarea, select, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Subir nuevo relato</h2>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <label>Título:</label>
+    <input type="text" name="title" required>
+
+    <label>Contenido:</label>
+    <textarea name="content" rows="5" required></textarea>
+
+    {% comment %} <label>Categoría:</label>
+    <select name="category" required>
+      <option value="" disabled selected>Seleccione una categoría</option>
+      {% for cat in categories %}
+        <option value="{{ cat.id }}">{{ cat.slug }}</option>
+      {% endfor %}
+    </select> {% endcomment %}
+
+    <label>Localización:</label>
+    <select name="localization" required>
+      <option value="" disabled selected>Seleccione una localización</option>
+      {% for loc in localizations %}
+        <option value="{{ loc.id }}">{{ loc.name }}</option>
+      {% endfor %}
+    </select>
+
+    <label>Archivos (imagen/video/audio):</label>
+    <input type="file" name="files" multiple>
+
+    <button type="submit">Subir relato</button>
+  </form>
+</body>
+</html>

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 
 #Base models for the other models
 class BaseModel(models.Model):
@@ -58,3 +60,19 @@ class Localizations(models.Model):
 
   def __str__(self):
     return self.name
+
+class Media(models.Model):
+  file_url = models.URLField()
+  file_type = models.CharField(max_length=20, choices=[
+    ("image", "Image"),
+    ("audio", "Audio"),
+    ("video", "Video"),
+    ("document", "Document"),
+  ])
+  
+  content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+  object_id = models.PositiveIntegerField()
+  related_object = GenericForeignKey('content_type', 'object_id')
+  
+  def __str__(self):
+    return f"{self.file_type} -> {self.file_url}"

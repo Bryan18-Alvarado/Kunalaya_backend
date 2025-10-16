@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Relato subido</title>
+</head>
+
+<body>
+  <h1>✅ Relato subido con éxito</h1>
+
+  <p><strong>Título:</strong> {{ story.title }}</p>
+  <p><strong>Contenido:</strong> {{ story.content }}</p>
+
+  {% if story.multimedia.all %}
+  <h3>Archivos subidos:</h3>
+  <ul>
+    {% for media in story.multimedia.all %}
+    <li><a href="{{ media.file_url }}" target="_blank">{{ media.file_url }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+  <a href="{% url 'story_form' %}">Subir otro relato</a>
+</body>
+
+</html>

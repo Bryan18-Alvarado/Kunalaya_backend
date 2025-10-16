@@ -8,10 +8,10 @@ from . import views
 router = routers.DefaultRouter()
 router.register(r'relatos', views.StoryListView, 'relatos')
 
-
 urlpatterns = [
-  path('', views.home),
-  path("api/v1/", include(router.urls))
+  path('api/v1/', include(router.urls)),
+  path('api/v1/stories/', views.CreateStoryView, name = 'create_story'),
+  path('form/story/', views.story_form, name='story_form'),
 ]
 
 if settings.DEBUG:

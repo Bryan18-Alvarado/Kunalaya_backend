@@ -3,6 +3,9 @@ from kunalaya.db_settings import DB
 from pathlib import Path
 from datetime import timedelta
 
+import firebase_admin
+from firebase_admin import credentials, storage
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,19 +39,14 @@ INSTALLED_APPS = [
     'app_relatos',
 ]
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
-
-# SIMPLE_JWT = {
-#     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
-#     "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
-#     "ROTATE_REFRESH_TOKENS": True,
-#     "BLACKLIST_AFTER_ROTATION": True,
-#     "AUTH_HEADER_TYPES": ("Bearer"),
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -135,3 +133,14 @@ CORS_ALLOW_ORIGINS = [
     'https://localhost:8081',
     'https://192.168.1.13:8081'
 ]
+
+#Settings to use the firebase storage
+FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_key.json")
+
+FIREBASE_STORAGE_BUCKET = "django-database-5e97c.firebasestorage.app"
+
+if not firebase_admin._apps:
+    cred = credentials.Certificate(FIREBASE_CRED_PATH)
+    firebase_admin.initialize_app(cred, {
+        'storageBucket': FIREBASE_STORAGE_BUCKET
+    })

@@ -7,3 +7,4 @@ db_settings.py
 /staticfiles/
 /media/
 
+firebase_key.json
