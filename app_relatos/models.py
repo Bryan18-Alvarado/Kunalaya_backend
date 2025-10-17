@@ -13,7 +13,7 @@ class Story(BaseModel):
   publication_date = models.DateTimeField(auto_now_add=True)
   localization = models.ForeignKey(Localizations, on_delete=models.CASCADE)
   
-  multimedia = GenericRelation(Media)
+  multimedia = GenericRelation(Media, blank = True)
   
   def __str__(self):
     return self.title

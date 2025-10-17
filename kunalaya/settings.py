@@ -43,9 +43,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
-    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    # ]
 }
 
 MIDDLEWARE = [
@@ -127,13 +127,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.13']
+ALLOWED_HOSTS = ['*']
 
-CORS_ALLOW_ORIGINS = [
-    'https://localhost:8081',
-    'https://192.168.1.13:8081'
-]
-
+CORS_ALLOW_ALL_ORIGINS = True
 #Settings to use the firebase storage
 FIREBASE_CRED_PATH = os.path.join(BASE_DIR, "firebase_key.json")
 

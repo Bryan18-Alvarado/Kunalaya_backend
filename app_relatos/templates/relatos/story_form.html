@@ -38,7 +38,6 @@
 </head>
 <body>
   <h2 style="text-align:center;">Subir nuevo relato</h2>
-
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
@@ -47,14 +46,6 @@
 
     <label>Contenido:</label>
     <textarea name="content" rows="5" required></textarea>
-
-    {% comment %} <label>Categoría:</label>
-    <select name="category" required>
-      <option value="" disabled selected>Seleccione una categoría</option>
-      {% for cat in categories %}
-        <option value="{{ cat.id }}">{{ cat.slug }}</option>
-      {% endfor %}
-    </select> {% endcomment %}
 
     <label>Localización:</label>
     <select name="localization" required>

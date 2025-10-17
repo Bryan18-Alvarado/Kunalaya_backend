@@ -18,7 +18,6 @@ class StoryListView(viewsets.ModelViewSet):
   queryset = Story.objects.all()
   permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
-
 @api_view(['POST'])
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
@@ -34,7 +33,7 @@ def CreateStoryView(request):
 
 @login_required
 def story_form(request):
-  categories = Category.objects.all()
+  # categories = Category.objects.all()
   localizations = Localizations.objects.all()
   
   if request.method == "POST":
@@ -43,7 +42,7 @@ def story_form(request):
     localization_id = request.POST.get("localization")
     files = request.FILES.getlist("files")
     
-    category = Category.objects.get(slug = "story")
+    category = Category.objects.get(slug = "relato")
     localization = Localizations.objects.get(id=localization_id)
     
     story = Story.objects.create(
@@ -56,13 +55,13 @@ def story_form(request):
     
     content_type = ContentType.objects.get_for_model(Story)
     for file in files:
-        url = upload_to_firebase(file, file.name)
-        Media.objects.create(
-            file_url=url,
-            file_type=file.content_type.split("/")[0],
-            content_type=content_type,
-            object_id=story.id
-        )
+      url = upload_to_firebase(file, file.name)
+      Media.objects.create(
+        file_url=url,
+        file_type=file.content_type.split("/")[0],
+        content_type=content_type,
+        object_id=story.id
+      )
 
     return render(request, "relatos/success.html", {"story": story})
 

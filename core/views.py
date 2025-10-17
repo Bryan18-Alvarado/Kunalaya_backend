@@ -18,7 +18,7 @@ class CommentListView(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def login(request):
-  
+
   user = get_object_or_404(CustomUser, email = request.data['email'])
 
   if not user.check_password(request.data['password']):
