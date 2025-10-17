@@ -9,7 +9,7 @@ router.register(r'comentarios', views.CommentListView, 'comentarios')
 urlpatterns = [
   path('', views.home),
   path('api/v1/', include(router.urls)),
-  re_path('login', views.login ),
-  re_path('register', views.register ),
-  re_path('profile', views.profile )
+  path('login/', views.login),
+  path('register/', views.register),
+  path('profile/', views.profile),
 ]
